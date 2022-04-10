@@ -1,0 +1,15 @@
+---
+- hosts: grafana
+  become: yes
+  tasks:
+    - name: Tag image
+      docker_image:
+        name: "grafana/grafana:8.4.4"
+        repository: "192.168.23.162:5000/grafana:8.4.4"
+        source: local
+
+    - name: Push image
+      docker_image:
+        name: "192.168.23.162:5000/grafana:8.4.4"
+        push: yes
+        source: local

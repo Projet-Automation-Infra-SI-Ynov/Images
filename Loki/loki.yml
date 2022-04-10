@@ -1,0 +1,15 @@
+---
+- hosts: loki
+  become: yes
+  tasks:
+    - name: Tag image
+      docker_image:
+        name: "grafana/loki:2.4.1"
+        repository: "192.168.23.162:5000/loki:2.4.1"
+        source: local
+
+    - name: Push image
+      docker_image:
+        name: "192.168.23.162:5000/loki:2.4.1"
+        push: yes
+        source: local

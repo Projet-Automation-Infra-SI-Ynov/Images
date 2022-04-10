@@ -1,0 +1,17 @@
+---
+- hosts: jenkins
+  become: yes
+  tasks:
+    - name: Tag image
+      docker_image:
+        name: "jenkins"
+        repository: "192.168.23.162:5000/jenkins:1.0"
+        source: local
+
+    - name: Push image
+      docker_image:
+        name: "192.168.23.162:5000/jenkins:1.0"
+        push: yes
+        source: local
+
+#curl -X GET http://192.168.23.162:5000/v2/_catalog
