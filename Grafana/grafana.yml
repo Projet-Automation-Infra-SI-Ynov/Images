@@ -2,14 +2,54 @@
 - hosts: grafana
   become: yes
   tasks:
-    - name: Tag image
+    # Grafana 
+    - name: Tag Grafana image
       docker_image:
         name: "grafana/grafana:8.4.4"
-        repository: "192.168.23.162:5000/grafana:8.4.4"
+        repository: "IP_REGISTRY:5000/grafana:8.4.4"
         source: local
 
-    - name: Push image
+    - name: Push Grafana image
       docker_image:
-        name: "192.168.23.162:5000/grafana:8.4.4"
+        name: "IP_REGISTRY:5000/grafana:8.4.4"
+        push: yes
+        source: local
+
+    # Prometheus 
+    - name: Tag Prometheus image
+      docker_image:
+        name: "prom/prometheus:v2.34.0"
+        repository: "IP_REGISTRY:5000/prometheus:2.34.0"
+        source: local
+
+    - name: Push Prometheus image
+      docker_image:
+        name: "IP_REGISTRY:5000/prometheus:2.34.0"
+        push: yes
+        source: local
+
+    # Loki 
+    - name: Tag Loki image
+      docker_image:
+        name: "grafana/loki:2.4.1"
+        repository: "IP_REGISTRY:5000/loki:2.4.1"
+        source: local
+
+    - name: Push Loki image
+      docker_image:
+        name: "IP_REGISTRY:5000/loki:2.4.1"
+        push: yes
+        source: local
+
+    # Promtail 
+    - name: Tag Promtail image
+      docker_image:
+        name: "grafana/promtail:2.4.1"
+        repository: "IP_REGISTRY:5000/promtail:2.4.1"
+        source: local
+
+    - name: Push Promtail image
+      docker_image:
+        name: "IP_REGISTRY:5000/promtail:2.4.1"
         push: yes
         source: local
