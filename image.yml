@@ -1,0 +1,15 @@
+---
+- hosts: image
+  become: yes
+  tasks:
+    - name: Tag Jenkins image
+      docker_image:
+        name: "IMAGES_PULL"
+        repository: "IP_REGISTRY:5000/IMAGEREGISTRY"
+        source: local
+
+    - name: Push Jenkins image
+      docker_image:
+        name: "IP_REGISTRY:5000/IMAGEREGISTRY"
+        push: yes
+        source: local
