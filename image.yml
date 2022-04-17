@@ -2,6 +2,11 @@
 - hosts: image
   become: yes
   tasks:
+    - name: Login to the Registry
+      registry_url: IP_REGISTRY:5000
+      username: USER
+      password: PASSWORD
+
     - name: Tag Jenkins image
       docker_image:
         name: "IMAGES_PULL"
@@ -13,3 +18,6 @@
         name: "IP_REGISTRY:5000/IMAGEREGISTRY"
         push: yes
         source: local
+    
+    - name: Logout to the Registry
+      shell: docker logout IP_REGISTRY:5000
