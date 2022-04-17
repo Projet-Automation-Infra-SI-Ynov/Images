@@ -3,9 +3,10 @@
   become: yes
   tasks:
     - name: Login to the Registry
-      registry_url: IP_REGISTRY:5000
-      username: USER
-      password: PASSWORD
+      docker_login:
+        registry_url: IP_REGISTRY:5000
+        username: USER
+        password: PASSWORD
 
     - name: Tag Jenkins image
       docker_image:
