@@ -8,13 +8,13 @@
         username: USER
         password: PASSWORD
 
-    - name: Tag Jenkins image
+    - name: Tag image
       docker_image:
         name: "IMAGES_PULL"
         repository: "IP_REGISTRY:5000/IMAGEREGISTRY"
         source: local
 
-    - name: Push Jenkins image
+    - name: Push image
       docker_image:
         name: "IP_REGISTRY:5000/IMAGEREGISTRY"
         push: yes
