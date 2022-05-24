@@ -1,0 +1,24 @@
+---
+- hosts: imageRegistry
+  become: yes
+  tasks:
+    - name: Login to the Registry
+      docker_login:
+        registry_url: IP_REGISTRY:5000
+        username: USER
+        password: PASSWORD
+
+    - name: Tag image
+      docker_image:
+        name: "IMAGES_PULL"
+        repository: "IP_REGISTRY:5000/IMAGEREGISTRY"
+        source: local
+
+    - name: Push image
+      docker_image:
+        name: "IP_REGISTRY:5000/IMAGEREGISTRY"
+        push: yes
+        source: local
+    
+    - name: Logout to the Registry
+      shell: docker logout IP_REGISTRY:5000
